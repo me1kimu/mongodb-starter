@@ -7,8 +7,14 @@ export default withAuth(
     const token = req.nextauth.token;
     const pathname = req.nextUrl.pathname;
 
-    // Allow public access to home and public profile pages
-    if (pathname === '/' || pathname.match(/^\/[^\/]+$/)) {
+    // Allow public access to home and public profile pages,
+    // but exclude reserved single-segment routes like /settings and /profile
+    if (
+      pathname === '/' ||
+      (pathname.match(/^\/[^\/]+$/) &&
+        pathname !== '/settings' &&
+        pathname !== '/profile')
+    ) {
       return NextResponse.next();
     }
 
@@ -38,7 +44,14 @@ export default withAuth(
         const pathname = req.nextUrl.pathname;
 
         // Public routes
-        if (pathname === '/' || pathname.match(/^\/[^\/]+$/) || pathname.startsWith('/_next') || pathname.startsWith('/api/auth')) {
+        if (
+          pathname === '/' ||
+          (pathname.match(/^\/[^\/]+$/) &&
+            pathname !== '/settings' &&
+            pathname !== '/profile') ||
+          pathname.startsWith('/_next') ||
+          pathname.startsWith('/api/auth')
+        ) {
           return true;
         }
 
