@@ -3,12 +3,20 @@ import GitHubProvider from 'next-auth/providers/github';
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 import clientPromise from 'lib/mongodb';
 
+// Runtime validation for required environment variables
+if (!process.env.GITHUB_CLIENT_ID) {
+  throw new Error('GITHUB_CLIENT_ID environment variable is not set');
+}
+if (!process.env.GITHUB_CLIENT_SECRET) {
+  throw new Error('GITHUB_CLIENT_SECRET environment variable is not set');
+}
+
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
       profile(profile) {
         return {
           id: profile.id.toString(),
