@@ -2,8 +2,7 @@
   "private": true,
   "overrides": {
     "minimatch": "^3.0.5",
-    "json5": "^2.2.2",
-    "ip": "^2.0.1"
+    "json5": "^2.2.2"
   },
   "scripts": {
     "dev": "next dev",
