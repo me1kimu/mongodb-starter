@@ -26,7 +26,7 @@ This starter application has been hardened against the following security vulner
 - **Status**: Fixed
 - **CVEs**: CVE-2022-39263, CVE-2022-35924
 - **Details**: NextAuth.js before 4.10.3 and 3.29.10 could send verification requests (magic links) to unwanted emails
-- **Fix**: Updated to next-auth@4.24.13
+- **Fix**: Require next-auth version 4.10.3 or later (this project specifies ^4.10.3)
 
 #### 3. Prototype Pollution in JSON5
 - **Status**: Fixed
