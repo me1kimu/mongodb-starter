@@ -39,3 +39,31 @@ https://vercel.com/integrations/mongodbatlas
 - [NextAuth.js](https://next-auth.js.org/)
 - [MongoDB Atlas](https://www.mongodb.com/atlas/database)
 - [Vercel](https://vercel.com/)
+
+## Security
+
+This starter includes several security enhancements:
+
+### Dependency Security
+- **Next.js >=13.5.11**: Mitigates authorization bypass vulnerabilities and other security issues
+- **NextAuth.js >=4.24.13**: Fixes magic link email verification vulnerabilities (CVE-2022-39263, CVE-2022-35924)
+- **Secure Dependencies**: Updated transitive dependencies to fix:
+  - Prototype pollution in JSON5 (CVE-2022-46175)
+  - ReDoS vulnerability in minimatch (CVE-2022-3517)
+
+### Authentication Security
+- OAuth state parameter validation for CSRF protection
+- Database session strategy for secure session management
+- Secure cookie configuration with httpOnly and sameSite flags
+- Production-grade cookie security with `__Secure-` prefix
+
+### Authorization Layer
+- Next.js middleware provides request-level authorization checks
+- API route protection with session validation
+- Username verification for user data modifications
+- Proper redirect handling for unauthenticated access
+
+### Best Practices
+- Environment variables for sensitive configuration
+- Secure session management with NextAuth.js
+- Protection against common web vulnerabilities (CSRF, XSS, Session Fixation)

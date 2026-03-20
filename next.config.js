@@ -9,10 +9,6 @@ const nextConfig = {
       'cloudflare-ipfs.com',
       'loremflickr.com'
     ]
-  },
-  experimental: {
-    legacyBrowsers: false,
-    browsersListForSwc: true
   }
 };
 
