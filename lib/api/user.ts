@@ -1,6 +1,4 @@
 import clientPromise from '@/lib/mongodb';
-import { remark } from 'remark';
-import remarkMdx from 'remark-mdx';
 import { serialize } from 'next-mdx-remote/serialize';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
@@ -21,17 +19,8 @@ export interface ResultProps {
 }
 
 export async function getMdxSource(postContents: string) {
-  // Use remark plugins to convert markdown into HTML string
-  const processedContent = await remark()
-    // Native remark plugin that parses markdown into MDX
-    .use(remarkMdx)
-    .process(postContents);
-
-  // Convert converted html to string format
-  const contentHtml = String(processedContent);
-
   // Serialize the content string into MDX
-  const mdxSource = await serialize(contentHtml);
+  const mdxSource = await serialize(postContents);
 
   return mdxSource;
 }
